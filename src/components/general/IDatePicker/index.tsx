@@ -1,19 +1,20 @@
-import moment, { Moment } from "moment-jalaali";
-import { useReducer } from "react";
 import {
   IDatePickerContext,
   iDatePickerInitialState,
   iDatePickerReducer,
 } from "./context";
+import moment, { Moment } from "moment-jalaali";
+
+import Days from "./Days";
 import Month from "./Month";
 import Year from "./Year";
+import { useReducer } from "react";
 
 const IDatePicker = () => {
   const [state, dispatch] = useReducer(
     iDatePickerReducer,
     iDatePickerInitialState
   );
-  console.log(state, "state");
 
   const initialDays = () => {
     const past = moment("1398/01/01", "jYYYY/jM/jD");
@@ -40,6 +41,7 @@ const IDatePicker = () => {
           <Year />
           <Month />
         </div>
+        <Days />
       </div>
     </IDatePickerContext.Provider>
   );

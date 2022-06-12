@@ -1,20 +1,10 @@
-import moment from "moment-jalaali";
 import { LeftIcon, RightIcon } from "../../icons";
+
+import { getPersianMoment } from "../../../utils/iMoment";
 import { useIDatePickerContext } from "./context";
 
 const Month = () => {
   const { state, dispatch } = useIDatePickerContext();
-  const handleChangeMonth = (month: number) => {
-    if (month === 11)
-      return dispatch({
-        type: "changeMonthYear",
-        payload: { month: 0, year: state.selectedYear + 1 },
-      });
-    dispatch({
-      type: "changeMonthYear",
-      payload: { month: month, year: state.selectedYear },
-    });
-  };
 
   const handleNextMonth = (month: number) => {
     if (month === 12)
@@ -48,9 +38,8 @@ const Month = () => {
         onClick={() => handlePrevMonth(state.selectedMonth - 1)}
       />
       <p className="mx-3">
-        {moment(
-          `${state.selectedYear}/${state.selectedMonth + 1}/01`,
-          "jYYYY/jMM/jDD"
+        {getPersianMoment(
+          `${state.selectedYear}/${state.selectedMonth + 1}/01`
         ).format("jMMMM")}
       </p>
       <RightIcon

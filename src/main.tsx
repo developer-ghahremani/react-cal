@@ -1,7 +1,9 @@
+import "./assets/css/main.min.css";
+import "animate.css/animate.css";
+
+import App from "./App";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./assets/css/main.min.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

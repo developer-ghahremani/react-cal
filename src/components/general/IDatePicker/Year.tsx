@@ -1,16 +1,17 @@
-import React from "react";
 import { LeftIcon, RightIcon } from "../../icons";
+import React, { useCallback } from "react";
+
 import { useIDatePickerContext } from "./context";
 
 const Year = () => {
   const { state, dispatch } = useIDatePickerContext();
 
-  const handleChangeYear = (year: number) => {
+  const handleChangeYear = useCallback((year: number) => {
     dispatch({
       type: "changeMonthYear",
       payload: { month: state.selectedMonth, year: year },
     });
-  };
+  }, []);
 
   return (
     <div className="flex items-center">
