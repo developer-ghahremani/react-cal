@@ -6,7 +6,10 @@ module.exports = {
       colors: {
         primary: "#0080E2",
         secondary: "#191919",
-        gray: { dark: "#B9B9B9", light: "#F3F3F3" },
+        gray: { dark: "#B9B9B9", light: "#F3F3F3", medium: "#f1f1f1" },
+      },
+      fontFamily: {
+        iransans: ["iransans"],
       },
     },
   },

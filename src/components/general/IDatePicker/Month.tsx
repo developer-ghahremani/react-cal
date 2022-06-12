@@ -1,6 +1,10 @@
 import { LeftIcon, RightIcon } from "../../icons";
 
+import { ChangeEvent } from "react";
+import ISelect from "../ISelect";
 import { getPersianMoment } from "../../../utils/iMoment";
+import { months } from "moment";
+import { persianMonths } from "./constants";
 import { useIDatePickerContext } from "./context";
 
 const Month = () => {
@@ -30,22 +34,34 @@ const Month = () => {
     });
   };
 
+  const handleChangeMonth = ({ target }: ChangeEvent<{}>) => {
+    dispatch({
+      type: "changeMonthYear",
+      payload: { month: +target.value, year: state.selectedYear },
+    });
+  };
+
   return (
     <div className="flex items-center">
-      <LeftIcon
-        size={10}
-        className="arrows"
-        onClick={() => handlePrevMonth(state.selectedMonth - 1)}
-      />
-      <p className="mx-3">
-        {getPersianMoment(
-          `${state.selectedYear}/${state.selectedMonth + 1}/01`
-        ).format("jMMMM")}
-      </p>
       <RightIcon
         className="arrows"
         onClick={() => handleNextMonth(state.selectedMonth + 1)}
         size={10}
+      />
+      <ISelect
+        className="appearance-none"
+        onChange={handleChangeMonth}
+        value={state.selectedMonth.toString()}
+        options={persianMonths.map((item, index) => ({
+          label: item,
+          value: index.toString(),
+        }))}
+      />
+
+      <LeftIcon
+        size={10}
+        className="arrows"
+        onClick={() => handlePrevMonth(state.selectedMonth - 1)}
       />
     </div>
   );

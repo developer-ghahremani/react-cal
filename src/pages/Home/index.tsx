@@ -1,16 +1,23 @@
+import { DateEvents } from "../../components/general";
 import { IDatePicker } from "../../components/general";
 import { MainLayout } from "../../components/layout";
+import { useState } from "react";
 
 const Home = () => {
-  // return (
-  //   <div className="grid grid-cols-10  gap-2">
-  //     <div className="bg-red-700 h-48 col-start-3"></div>
-  //   </div>
-  // );
+  const [currentDate, setCurrentDate] = useState<Date>(new Date());
+  const handleChangeDate = (date: Date) => {
+    setCurrentDate(date);
+  };
+
   return (
     <MainLayout>
-      <div className="grid grid-cols-2 w-full h-screen items-center">
-        <IDatePicker />
+      <div className="h-screen flex flex-col justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="order-last md:order-first">
+            <DateEvents date={currentDate} />
+          </div>
+          <IDatePicker onChange={handleChangeDate} />
+        </div>
       </div>
     </MainLayout>
   );

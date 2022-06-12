@@ -4,8 +4,8 @@ type Props = { children: React.ReactNode };
 
 const MainLayout = (props: Props) => {
   return (
-    <div className="bg-gray-light min-h-screen">
-      <div className="md:max-w-lg lg:max-w-3xl mx-auto">{props.children}</div>
+    <div className="font-iransans">
+      <div className="lg:max-w-4xl mx-auto">{props.children}</div>
     </div>
   );
 };

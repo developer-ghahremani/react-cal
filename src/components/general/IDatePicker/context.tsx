@@ -7,10 +7,15 @@ interface IDatePickerStateInterface {
   selectedDay: Moment;
 }
 
-type IDatePickerActions = {
-  payload: { month: number; year: number };
-  type: "changeMonthYear";
-};
+type IDatePickerActions =
+  | {
+      payload: { month: number; year: number };
+      type: "changeMonthYear";
+    }
+  | {
+      payload: Moment;
+      type: "changeSelectedDay";
+    };
 
 export const iDatePickerInitialState: IDatePickerStateInterface = {
   selectedMonth: moment().jMonth(),
@@ -29,6 +34,9 @@ export const iDatePickerReducer = (
         selectedYear: payload.year,
         selectedMonth: payload.month,
       };
+
+    case "changeSelectedDay":
+      return { ...state, selectedDay: payload };
 
     default:
       return state;

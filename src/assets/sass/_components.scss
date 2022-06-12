@@ -1,3 +1,19 @@
 .arrows {
   @apply cursor-pointer hover:scale-150 duration-700;
 }
+
+.day-item {
+  @apply border flex rounded-lg  justify-center items-start p-1 cursor-pointer text-sm;
+}
+
+.selected-day {
+  @apply text-primary bg-primary bg-opacity-20;
+}
+
+body {
+  direction: rtl;
+}
+
+.app-select {
+  @apply text-center cursor-pointer bg-inherit min-w-[6rem];
+}

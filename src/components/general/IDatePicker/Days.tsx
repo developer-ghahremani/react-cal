@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import moment, { Moment } from "moment-jalaali";
-
+import { DayItem } from "../../items";
+import { Moment } from "moment-jalaali";
 import { getPersianMoment } from "../../../utils/iMoment";
+import { persianWeekDays } from "./constants";
 import { useIDatePickerContext } from "./context";
 
-const Days = () => {
-  const { state } = useIDatePickerContext();
+type Props = {
+  onChange: (date: Date) => void;
+};
 
-  useEffect(() => {
-    // initialDays();
-  }, [state.selectedMonth, state.selectedYear]);
+const Days = (props: Props) => {
+  const { state, dispatch } = useIDatePickerContext();
 
   const initialDays = (): Moment[] => {
     const fromDate = getPersianMoment(
@@ -21,34 +21,35 @@ const Days = () => {
     while (currentDate <= toDate) {
       arr.push(currentDate.clone());
       currentDate = currentDate.clone().add(1, "days");
-      //   currentM = t.jMonth();
     }
 
     return arr;
   };
 
+  const handleSelectDay = (day: Moment) => {
+    props.onChange(day.toDate());
+    dispatch({ type: "changeSelectedDay", payload: day });
+  };
+
   return (
     <div className="grid grid-cols-7 gap-2 my-4">
-      {[
-        ...initialDays().filter(
-          (item) => item.jMonth() === state.selectedMonth
-        ),
-      ].map((item, index) => (
-        <div
-          key={item.toISOString()}
-          style={{
-            gridColumnStart: +item.format(`d`) + 1,
-            animationDelay: `${index / 15}s`,
-          }}
-          className={`border flex rounded-lg border-gray-dark justify-center items-start p-1 animate__animated animate__fadeInUp`}>
-          {item.format(`jDD`)}
+      {persianWeekDays.map((item, index) => (
+        <div key={item + index}>
+          <p className="text-xs text-gray-dark text-center">{item}</p>
         </div>
       ))}
+      {[...initialDays()]
+        .filter((item) => item.jMonth() === state.selectedMonth)
+        .map((item, index) => (
+          <DayItem
+            onClick={handleSelectDay}
+            day={item}
+            index={index}
+            selectedDay={state.selectedDay}
+          />
+        ))}
     </div>
   );
 };
 
 export default Days;
-// col-start-${item.format(
-//   `d`
-// )}

@@ -6,6 +6,8 @@ import moment, { Moment } from "moment-jalaali";
  */
 export const getPersianMoment = (d: string): Moment => {
   const m = moment(d, "jYYYY/jMM/jDD");
-  // m.locale("fa", null);
+  // m.isoWeek(1).startOf("isoWeeks");
+  // m.weekday(-1);
+  // m.locale("fa");
   return m;
 };
