@@ -34,7 +34,7 @@ const Month = () => {
     });
   };
 
-  const handleChangeMonth = ({ target }: ChangeEvent<{}>) => {
+  const handleChangeMonth = ({ target }: ChangeEvent<HTMLSelectElement>) => {
     dispatch({
       type: "changeMonthYear",
       payload: { month: +target.value, year: state.selectedYear },

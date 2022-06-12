@@ -1,6 +1,6 @@
 import React, { SelectHTMLAttributes } from "react";
 
-interface Props extends SelectHTMLAttributes<{}> {
+interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
   options: { label: string; value: string }[];
 }
 

@@ -1,5 +1,5 @@
 import { LeftIcon, RightIcon } from "../../icons";
-import React, { useCallback } from "react";
+import React, { ChangeEvent, useCallback } from "react";
 
 import ISelect from "../ISelect";
 import { persianYears } from "./constants";
@@ -24,7 +24,7 @@ const Year = () => {
       />
       <ISelect
         className="appearance-none"
-        onChange={(event: React.ChangeEvent<{}>) =>
+        onChange={(event: ChangeEvent<HTMLSelectElement>) =>
           handleChangeYear(+event.target.value)
         }
         value={state.selectedYear.toString()}

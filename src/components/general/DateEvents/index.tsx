@@ -17,7 +17,7 @@ const DateEvents = (props: Props) => {
   );
 
   const handleChangeCategory = (params: ChangeEvent<{}>) => {
-    setEventCategory(params.target.value);
+    // setEventCategory(params.target.value);
   };
 
   const { isFetching, data, isError } = useGetDateEventsQuery({
